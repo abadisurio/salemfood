@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "./App";
 import Menu from "./pages/Menu";
 import Admin from "./pages/Admin";
 import EditItem from "./pages/EditItem";
@@ -7,7 +6,7 @@ import EditItem from "./pages/EditItem";
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <App />,
+        element: <Menu />,
     },
     {
         path: "/menu",

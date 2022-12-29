@@ -1,9 +1,10 @@
 import React from 'react'
 
-const CustomInput = ({ properties, type = '' }) => {
+const CustomInput = (props) => {
+    // console.log(props)
     return (
         <div className='p-1'>
-            <input className='p-1 border w-full rounded border-solid border-gray-400' {...{ ...properties, type }} />
+            <input className='p-1 border w-full rounded border-solid border-gray-400' {...props} />
         </div>
     )
 }
