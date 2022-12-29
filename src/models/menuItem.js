@@ -2,13 +2,13 @@
 const menuItem = {
     name: 'menu-item',
     properties: {
-        id: '',
-        name: '',
-        description: '',
-        image: '',
-        price: '',
-        ratings: '',
-        buyCount: '',
+        id: 'ID',
+        name: 'Nama',
+        description: 'Deskripsi',
+        image: 'Gambar',
+        price: 'Harga',
+        ratings: 'Ratings',
+        buyCount: 'Pembelian',
     }
 }
 export default menuItem

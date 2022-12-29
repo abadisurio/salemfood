@@ -14,7 +14,7 @@ const Table = ({ tableName = 'A Table', data = [], type }) => {
                         {Object.keys(type.properties).map(key => {
                             // console.log(key)
                             return (
-                                <th key={key}>{key}</th>
+                                <th key={key}>{type.properties[key]}</th>
                             )
                         })}
                         <th>
