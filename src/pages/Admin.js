@@ -1,34 +1,32 @@
 import React, { useContext, useEffect, useState } from 'react'
-import menuItem from '../models/menuItem'
 import Table from '../components/Table'
-import { MenuContext } from '../contexts/MenuContext'
-import { Outlet } from 'react-router-dom'
+import models from '../models'
+import contexts from '../contexts'
 
 const Admin = () => {
 
-    const menuContext = useContext(MenuContext)
-    const [menuList, setMenuList] = useState([])
+    const kind = 'menu-item'
+    const context = useContext(contexts[kind])
+    const [hookList, setHookList] = useState([])
     useEffect(() => {
         const fetchData = async () => {
-            const data = await menuContext.getLocalMenuList()
+            const data = await context.getLocalHookList()
             console.log(data)
-            setMenuList(data)
+            setHookList(data)
         }
         fetchData()
-    }, [menuContext])
+    }, [context])
 
-
-    if (menuContext.isLoading) return <h1>loading</h1>
-    // console.log(await menuContext.getLocalMenuList());
+    if (context.isLoading) return <h1>loading</h1>
+    // console.log(await context.getLocalHookList());
     return (
         <div className="container mx-auto px-4 gap-4">
             <div>Admin</div>
-            <Table type={menuItem} data={menuList} />
-            <Outlet />
+            <Table type={models[kind]} data={hookList} />
             {/* <ul className='grid pr-2 pt-2 gap-2'>
                 {foodCollection.map((item, index) => {
                     return (
-                        <TableItem key={index} {...{ item, index, type: menuItem }} />
+                        <TableItem key={index} {...{ item, index, type: hookItem }} />
                     )
                 })}
             </ul> */}

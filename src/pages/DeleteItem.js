@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { MenuContext } from '../contexts/MenuContext';
 import menuItem from '../models/menuItem';
 import models from '../models';
 import contexts from '../contexts';
@@ -8,23 +7,23 @@ import contexts from '../contexts';
 const DeleteItem = () => {
     let { itemId, type } = useParams();
     const [item, setItem] = useState(models[type].properties)
-    const menuContext = useContext(contexts[type])
+    const contextUsed = useContext(contexts[type])
     const navigate = useNavigate()
 
     useEffect(() => {
         const fetchData = async () => {
             console.log('run')
-            const gotMenu = await menuContext.getLocalMenu(itemId);
-            console.log(gotMenu);
-            // console.log(gotMenu);
-            setItem(gotMenu);
+            const gotHook = await contextUsed.getLocalHook(itemId);
+            console.log(gotHook);
+            // console.log(gotHook);
+            setItem(gotHook);
         }
         fetchData()
-    }, [menuContext, itemId])
+    }, [contextUsed, itemId])
 
     const deleteNow = async () => {
-        const gotMenu = await menuContext.removeLocalMenu(itemId);
-        console.log(gotMenu);
+        const gotHook = await contextUsed.removeLocalHook(itemId);
+        console.log(gotHook);
         navigate('/admin')
     }
     return (
@@ -32,7 +31,7 @@ const DeleteItem = () => {
             <div className='drop-shadow-xl rounded-xl p-5 bg-white'>
                 <h1>Delete item?</h1>
                 {Object.keys(item).map(key => {
-                    return <h1><span className='font-bold'>{menuItem.properties[key]}</span> {item[key]}</h1>
+                    return <h1 key={key}><span className='font-bold'>{menuItem.properties[key]}</span> {item[key]}</h1>
                 })}
                 <div className=' mt-5 float-right'>
                     <button className='p-1 px-3 bg-green-500 text-white rounded mr-2' onClick={() => navigate(-1)} >Batal</button>

@@ -15,7 +15,7 @@ const foodCollectionDB = [
 ]
 
 const useMenu = (child) => {
-    const [menuList, setMenuList] = useState([menuItem.properties])
+    const [menuList, setHookList] = useState([menuItem.properties])
     const [isLoading, setIsLoading] = useState(true)
     const [isInitialized, setIsInitialized] = useState(false)
     const res = block => new Promise(resolve => { if (isInitialized) resolve(block) })
@@ -24,7 +24,7 @@ const useMenu = (child) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await initializeMenu()
+            await initializeHook()
             setIsInitialized(true)
         }
         fetchData()
@@ -39,7 +39,7 @@ const useMenu = (child) => {
     // console.log(menuList)
 
 
-    const initializeMenu = async () => {
+    const initializeHook = async () => {
         // const res = await restAPI.get('hehe');
         // console.log(res)
         const data = await new Promise(resolve => {
@@ -48,15 +48,15 @@ const useMenu = (child) => {
             }, 500)
         })
         console.log('called')
-        setMenuList(data)
+        setHookList(data)
         setIsLoading(false)
     }
 
-    const addMenu = (id) => {
+    const addHook = (id) => {
         // console.log('id', id)
-        setMenuList(prev => [...prev, id])
+        setHookList(prev => [...prev, id])
     }
-    const getMenu = async (id) => {
+    const getHook = async (id) => {
         // console.log('id', id)
         const data = await new Promise(resolve => {
             setTimeout(() => {
@@ -65,30 +65,30 @@ const useMenu = (child) => {
         })
         return data
     }
-    const getLocalMenu = async (id) => {
+    const getLocalHook = async (id) => {
         console.log('id', id)
         console.log(menuList)
         return res(menuList.find(item => item.id === id))
     }
-    const getLocalMenuList = async () => {
+    const getLocalHookList = async () => {
         // console.log('id', id)
         console.log(menuList)
         return res(menuList)
     }
-    const updateLocalMenu = async (id, newData = menuItem.properties) => {
+    const updateLocalHook = async (id, newData = menuItem.properties) => {
         console.log('id', id, newData)
-        setMenuList(menuList.map(item => id !== item.id ? item : { id, ...newData }))
+        setHookList(menuList.map(item => id !== item.id ? item : { id, ...newData }))
         // setIsLoading(false)
         return res({ id, ...newData })
     }
-    const removeMenu = (index) => {
+    const removeHook = (index) => {
         const newList = menuList.filter((item, index2) => index2 !== index)
-        setMenuList(newList)
+        setHookList(newList)
         // console.log('product removed')
     }
-    const removeLocalMenu = async (id) => {
+    const removeLocalHook = async (id) => {
         const newList = menuList.filter((item) => item.id !== id)
-        setMenuList(newList)
+        setHookList(newList)
         return res(true)
         // console.log('product removed')
     }
@@ -97,10 +97,10 @@ const useMenu = (child) => {
     //     return { isLoading }
     // }
 
-    // return { initializeMenu, isLoading, menuList, addMenu, getMenu, removeMenu }
+    // return { initializeHook, isLoading, menuList, addHook, getHook, removeHook }
     // console.log(isInitialized);
     // if (isInitialized) {
-    return { initializeMenu, isLoading, menuList, addMenu, getMenu, getLocalMenu, getLocalMenuList, updateLocalMenu, removeMenu, removeLocalMenu }
+    return { initializeHook, isLoading, menuList, addHook, getHook, getLocalHook, getLocalHookList, updateLocalHook, removeHook, removeLocalHook }
     // } else {
     // return { isLoading, menuList, }
     // }
