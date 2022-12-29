@@ -59,16 +59,9 @@ const Menu = () => {
 
     return (
         <>
-            <nav className="bg-green-600 text-white">
-                <div className="container mx-auto px-4 py-4">
-                    <h1 className="text-3xl font-bold">
-                        SalemFood
-                    </h1>
-                </div>
-            </nav>
             <div className="flex flex-row container mx-auto px-4 gap-4">
                 <div>
-                    <div class="sticky top-0 backdrop-blur-md bg-white/70 z-50 p-3">
+                    <div className="sticky top-0 backdrop-blur-md bg-white/70 z-50 p-3">
                         <h1 className="font-bold text-xl">Makanan</h1>
                     </div>
                     <div className="grid grid-cols-3 grid-flow-row gap-4 px-5">
