@@ -21,6 +21,7 @@ const Menu = () => {
             const data = await contextCollection['menu-item'].getLocalHookList()
             console.log(data)
             setGridCollection(data)
+            contextCollection['cart'].loadCart(data)
         }
         fetchData()
     })
@@ -35,7 +36,11 @@ const Menu = () => {
                     <div className="sticky top-0 backdrop-blur-md bg-white/70 z-50 p-3">
                         <h1 className="font-bold text-xl">Makanan</h1>
                     </div>
-                    <Grid kind='menu-item' grid={grid} interactiveComponent={(eachItem) => [<Counter counter={(count) => console.log('sini ', count)} add={() => atc(eachItem.id)} reduce={() => rfc(eachItem.id)} />]} />
+                    <Grid kind='menu-item' grid={grid} interactiveComponent={(eachItem) => [
+                        <div className='flex justify-end'>
+                            <Counter key={eachItem.id} add={() => atc(eachItem.id)} reduce={() => rfc(eachItem.id)} />
+                        </div>
+                    ]} />
                 </div>
                 <div className="w-80">
                     <div className="sticky top-0 pt-5">

@@ -13,8 +13,9 @@ const Counter = ({ counter, reduce, add }) => {
         setCount(prev => prev -= 1)
         reduce(count)
     }
-
-    counter(count)
+    if (counter) {
+        counter(count)
+    }
     return (
         <div className="flex flex-row items-center">
             {/* <h3 className="font-bold mr-auto">Rp{indoCurrency.format(item.price)}</h3> */}

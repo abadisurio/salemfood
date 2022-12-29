@@ -2,28 +2,29 @@ import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import CustomInput from '../components/CustomInput';
 import models from '../models';
-import { MenuContext } from '../contexts/MenuContext';
-import menuItem from '../models/menuItem';
+import contexts from '../contexts';
 
 const EditItem = () => {
-    const menuContext = useContext(MenuContext)
+    // const context = useContext(HookContext)
+
+    const context = useContext(contexts['menu-item'])
     const navigate = useNavigate()
-    // console.log(menuContext)
+    // console.log(context)
     let { itemId, type } = useParams();
-    const [item, setItem] = useState(menuItem.properties)
     const gotType = models[type]
+    const [item, setItem] = useState(gotType.properties)
     // console.log(itemId, gotType);
 
     useEffect(() => {
         const fetchData = async () => {
             console.log('run')
-            const gotMenu = await menuContext.getLocalMenu(itemId);
-            console.log(gotMenu);
-            // console.log(gotMenu);
-            setItem(gotMenu);
+            const gotHook = await context.getLocalHook(itemId);
+            console.log(gotHook);
+            // console.log(gotHook);
+            setItem(gotHook);
         }
         fetchData()
-    }, [menuContext, itemId])
+    }, [context, itemId])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -34,7 +35,7 @@ const EditItem = () => {
             console.log(key);
             newData[key] = value
         }
-        const isSuccess = await menuContext.updateLocalMenu(itemId, item)
+        const isSuccess = await context.updateLocalHook(itemId, item)
         console.log(isSuccess);
         navigate(-1)
         // fetch('/api/form-submit-url', {
@@ -45,7 +46,7 @@ const EditItem = () => {
 
     const handleChange = ({ target }) => setItem(prev => ({ ...prev, [target.name]: target.value }))
 
-    if (menuContext.isLoading) return <h1>loading</h1>
+    if (context.isLoading) return <h1>loading</h1>
 
     return (
         <div className='container px-5 mx-auto'>
