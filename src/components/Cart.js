@@ -23,7 +23,7 @@ const Cart = () => {
 
             <h1>----</h1>
             {Object.keys(contextCollection['cart'].cart).map(itemId => {
-                const foodItem = contextCollection['menu-item'].menuList.find(item => item.id === itemId)
+                const foodItem = contextCollection['menu-item'].dataList.find(item => item.id === itemId)
                 return (
                     <div key={itemId} className="flex"><span className="mr-auto">{contextCollection['cart'].cart[itemId]}x {foodItem.name}</span>Rp{indoCurrency.format(foodItem.price * contextCollection['cart'].cart[itemId])}</div>
                 )

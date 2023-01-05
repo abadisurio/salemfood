@@ -5,7 +5,7 @@ const Table = ({ tableName = 'A Table', data = [], type }) => {
     return (
         <div>
             <div>{tableName}</div>
-            <table className="table-auto">
+            <table className="table-fixed w-full">
                 <thead>
                     <tr>
                         <th>

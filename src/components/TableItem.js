@@ -6,13 +6,13 @@ const TableItem = ({ item, index, type }) => {
     const location = useLocation();
     return (
         <>
-            <tr>
+            <tr className="break-words">
                 <td>
                     <input type={'checkbox'} id={"item-" + index} />
                 </td>
                 {Object.keys(type.properties).map(key => {
-                    // console.log(key)
-                    return <td key={key}>{item[key]}</td>
+                    console.log(item[key])
+                    return <td key={key}><span >{item[key]}</span></td>
                 })}
                 <td>
                     <div className='w-24 flex flex-row gap-2' >

@@ -32,17 +32,17 @@ const Menu = () => {
     return (
         <>
             <div className="flex flex-row container mx-auto px-4 gap-4">
-                <div>
+                <div className="w-3/4">
                     <div className="sticky top-0 backdrop-blur-md bg-white/70 z-50 p-3">
                         <h1 className="font-bold text-xl">Makanan</h1>
                     </div>
                     <Grid kind='menu-item' grid={grid} interactiveComponent={(eachItem) => [
-                        <div className='flex justify-end'>
+                        <div key={eachItem.id} className='flex justify-end'>
                             <Counter key={eachItem.id} add={() => atc(eachItem.id)} reduce={() => rfc(eachItem.id)} />
                         </div>
                     ]} />
                 </div>
-                <div className="w-80">
+                <div className="w-1/4">
                     <div className="sticky top-0 pt-5">
                         <Cart />
                     </div>
